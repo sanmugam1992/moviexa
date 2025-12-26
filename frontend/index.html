@@ -6,44 +6,41 @@
   <style>
     body {
       font-family: Arial;
-      background: #0f0f0f;
-      color: white;
-      text-align: center;
-      margin: 0;
-    }
-    h1 {
-      margin-top: 20px;
+      background:#0f0f0f;
+      color:white;
+      text-align:center;
+      margin:0;
     }
     .container {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      padding: 20px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      padding:20px;
     }
     .movie {
-      width: 200px;
-      margin: 15px;
-      background: #1c1c1c;
-      padding: 10px;
-      border-radius: 10px;
+      width:200px;
+      margin:15px;
+      background:#1c1c1c;
+      padding:10px;
+      border-radius:10px;
     }
     img {
-      width: 100%;
-      border-radius: 10px;
+      width:100%;
+      border-radius:10px;
     }
     button {
-      background: red;
-      color: white;
-      border: none;
-      padding: 10px;
-      width: 100%;
-      border-radius: 5px;
-      cursor: pointer;
-      margin-top: 10px;
+      background:red;
+      color:white;
+      border:none;
+      padding:10px;
+      width:100%;
+      border-radius:5px;
+      cursor:pointer;
+      margin-top:10px;
     }
     footer {
-      padding: 20px;
-      opacity: 0.6;
+      padding:20px;
+      opacity:0.6;
     }
   </style>
 </head>
@@ -57,13 +54,15 @@
   </div>
 
   <script>
-    fetch("http://54.169.32.166/api/movies")
+    const API_KEY = "YOUR_TMDB_API_KEY";
+
+    fetch(`https://api.themoviedb.org/3/movie/now_playing?api_key=${API_KEY}&language=en-IN`)
       .then(res => res.json())
       .then(data => {
         document.getElementById("movies").innerHTML =
           data.results.map(m => `
             <div class="movie">
-              <img src="https://image.tmdb.org/t/p/w300${m.poster_path}" alt="${m.title}">
+              <img src="https://image.tmdb.org/t/p/w300${m.poster_path}">
               <h4>${m.title}</h4>
               <p>⭐ ${m.vote_average}</p>
               <a href="https://in.bookmyshow.com/explore/movies" target="_blank">
